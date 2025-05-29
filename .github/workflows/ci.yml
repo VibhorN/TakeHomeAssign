@@ -2,7 +2,8 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build-test-deploy:
@@ -11,7 +12,8 @@ jobs:
     services:
       postgres:
         image: postgres:13
-        ports: ['5432:5432']
+        ports:
+          - 5432:5432
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
