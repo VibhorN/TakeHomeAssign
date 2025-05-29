@@ -55,9 +55,9 @@ Dockerization: 1-2 hours
 
 CI/CD pipeline setup with GitHub Actions (including Cloud SQL integration): 8 hours
 
-Deployment to Google Cloud Run: 3 hours
+Deployment to Google Cloud Run: 5 hours
 
-Testing and edge case handling: 3 hours
+Testing and edge case handling: 2 hours
 
 Documentation: 1 hour
 
@@ -65,5 +65,5 @@ Total estimated time: approximately 20 hrs
 
 # Trade-Offs:
 
-With the short turn-around, some issues persist. For example in the yml file, the deployment doesn't fully work because of a T90 error that seems to be an issue with the formatting of the file, but I can't seem to fix. In addition, I wasn't able to do some of the optional features for the project. Overall, I do think I was able to get the basic functionality down. 
+With the short turn-around, some issues persist. For example in the yml file, the deployment doesn't fully work because of a T90 error that seems to be an issue with the formatting of the file, but I can't seem to fix. In addition, I wasn't able to do some of the optional features for the project. Overall, I do think I was able to get the basic functionality down. In addition, more robust tests could be written to enhance the project.
 
