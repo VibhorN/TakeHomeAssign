@@ -4,7 +4,7 @@ This is a simple URL shortener service built using FastAPI, PostgreSQL, Docker, 
 # Running the project locally:
 
 ## Clone the repo:
-git clone https://github.com/your-username/TakeHomeAssign.git
+git clone https://github.com/VibhorN/TakeHomeAssign.git
 
 ## Create an env variable for the DATABASE_URL:
 DATABASE_URL=postgresql://postgres:<password>@db:5432/url_db
