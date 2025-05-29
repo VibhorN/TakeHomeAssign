@@ -1,35 +1,39 @@
+# URL Shortener
 This is a simple URL shortener service built using FastAPI, PostgreSQL, Docker, and GitHub Actions for CI/CD, deployed on Google Cloud Run. It provides RESTful API endpoints for creating, redirecting, and tracking shortened URLs.
 
-Running the project locally:
+# Running the project locally:
 
-Clone the repo:
+## Clone the repo:
 git clone https://github.com/your-username/TakeHomeAssign.git
 
-Create an env variable for the DATABASE_URL:
+## Create an env variable for the DATABASE_URL:
 DATABASE_URL=postgresql://postgres:<password>@db:5432/url_db
 
-Run the project:
+## Run the project:
 docker-compose up -- build
 
-Access the API at http://localhost.8000.
+## Access the API at http://localhost.8000.
 
-Example API Commands:
+# Example API Commands:
 
-Create a short URL: curl -X POST http://localhost:8000/shorten \
+## Create a short URL: 
+curl -X POST http://localhost:8000/shorten \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
 
-Redirect to Original URL: curl -i http://localhost:8000/abc123
+## Redirect to Original URL: 
+curl -i http://localhost:8000/abc123
 
-Get Analytics for Short URL: curl http://localhost:8000/analytics/abc123
+## Get Analytics for Short URL: 
+curl http://localhost:8000/analytics/abc123
 
-This project uses GitHub Actions for CI/CD automation. The pipeline runs on every push to the main branch and performs the following steps:
+# CI/CD
 
-Executes unit tests, Builds the Docker image, Pushes the image to Google Artifact Registry, Deploys the image to Google Cloud Run using gcloud run deploy.
+This project uses GitHub Actions for CI/CD automation. The pipeline runs on every push to the main branch. It Executes unit tests, builds the Docker image, pushes the image to Google Artifact Registry, deploys the image to Google Cloud Run using gcloud run deploy.
 
 The CI/CD pipeline connects the deployed Cloud Run service to a Cloud SQL (PostgreSQL) instance using the Unix socket method (/cloudsql/instance-connection-name). The DATABASE_URL environment variable in the deployment specifies the Cloud SQL connection.
 
-How Deployment Works
+# How Deployment Works
 
 The service is deployed to Google Cloud Run using the following steps:
 
@@ -43,7 +47,7 @@ The workflow runs gcloud run deploy with the following flags:
 
 This connects the Cloud Run service to the Cloud SQL database for production usage.
 
-Time Breakdown:
+# Time Breakdown:
 
 API development with FastAPI: 4 hours
 
@@ -59,6 +63,7 @@ Documentation: 1 hour
 
 Total estimated time: approximately 20 hrs
 
-Trade-Offs:
-With the short turn-around, some issues persist. For example in the yml file, the deployment doesn't fully work because of a T90 error that seems to be an issue with the formatting of the file, but I can't seem to fix. In addition, I wasn't able to do some of the optional features for the project. Overall, I do think I was able to get the basic functionality down.
+# Trade-Offs:
+
+With the short turn-around, some issues persist. For example in the yml file, the deployment doesn't fully work because of a T90 error that seems to be an issue with the formatting of the file, but I can't seem to fix. In addition, I wasn't able to do some of the optional features for the project. Overall, I do think I was able to get the basic functionality down. 
 
