@@ -18,7 +18,8 @@ jobs:
           POSTGRES_DB: test_db
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -28,8 +29,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Uncomment this when you want to run tests
-      # - name: Run tests
+      # - name: Run tests (Postgres)
+      #   env:
+      #     DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
       #   run: PYTHONPATH=$(pwd) pytest url_shortener/tests/
 
       - name: Authenticate to Google Cloud
@@ -43,10 +45,15 @@ jobs:
           project_id: 'url-shortener-461318'
           install_components: 'beta'
 
-      - name: Build and Push Docker Image
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-west1-docker.pkg.dev
+
+      - name: Build Docker Image
         run: |
-          gcloud auth configure-docker us-west1-docker.pkg.dev
           docker build -t us-west1-docker.pkg.dev/url-shortener-461318/url-shortener-implementation/url-shortener:latest .
+
+      - name: Push Docker Image
+        run: |
           docker push us-west1-docker.pkg.dev/url-shortener-461318/url-shortener-implementation/url-shortener:latest
 
       - name: Deploy to Cloud Run
